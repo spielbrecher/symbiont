@@ -11,7 +11,7 @@ def start():
 
 
 if __name__ == "__main__":
-    #assistant = SpeechAssistant()
-    #assistant.run()
+    assistant = SpeechAssistant()
+    assistant.run()
     #start()
-    print(deepseek.chat_stream("Сочини сказку на ночь"))
+    #print(deepseek.chat_stream("Сочини сказку на ночь"))
