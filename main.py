@@ -3,6 +3,7 @@ import tkinter as Tk
 import rag
 from speech_assistant import SpeechAssistant
 import deepseek
+from gigachat_rag import GigaRAG
 
 def start():
     root = Tk.Tk()
@@ -15,3 +16,5 @@ if __name__ == "__main__":
     assistant.run()
     #start()
     #print(deepseek.chat_stream("Сочини сказку на ночь"))
+    #rag = GigaRAG()
+    #rag.test3()

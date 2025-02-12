@@ -4,8 +4,7 @@ import speech_recognition as sr
 import pyttsx3
 import queue
 import rag
-import deepseek
-
+from gigachat_rag import GigaRAG
 
 class SpeechAssistant:
     def __init__(self):
@@ -49,7 +48,8 @@ class SpeechAssistant:
             text += self.text_queue.get()
         # Пример обработки текста (можно заменить на свою логику)
         print("generate response")
-        processed_text = self.rag_system.generate_response(text, max_length=200)
+        #processed_text = self.rag_system.generate_response(text, max_length=200)
+        processed_text = self.rag_system.ask_chain(text)
         #processed_text = deepseek.chat_stream(text)  - Если использовать бесплатный API
         print(f"Обработанный текст: {processed_text}")
         self.speak(processed_text)
@@ -64,7 +64,10 @@ class SpeechAssistant:
 
     def init_rag(self):
         # Инициализация RAG
-        self.rag_system = rag.RAG()
+        #self.rag_system = rag.RAG()
+        self.rag_system = GigaRAG()
+        self.rag_system.load_database()
+        self.rag_system.create_qa_chain()
 
     def run(self):
         print("init rag")
