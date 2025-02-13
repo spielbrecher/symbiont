@@ -26,8 +26,11 @@ class SpeechAssistant:
                         #self.recognizer.adjust_for_ambient_noise(source, duration=1)
                         audio = self.recognizer.listen(source, timeout=2)
                         recognized_text = self.recognizer.recognize_google(audio, language="ru-RU")
+                        if self.is_speaking:
+                            recognized_text = ""
                         print(f"Распознано: {recognized_text}")
-                        self.text_queue.put(recognized_text)  # Добавляем распознанный текст в очередь
+                        if(len(recognized_text)>2):
+                            self.text_queue.put(recognized_text)  # Добавляем распознанный текст в очередь
                         if "стоп" in recognized_text.lower():
                             self.stop_listening = True
                             break
